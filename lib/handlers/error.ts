@@ -10,7 +10,7 @@ const formatResponse = (
   responseType: ResponseType,
   status: number,
   message: string,
-  errors?: Record<string, string[]> | undefined
+  errors?: Record<string, string[]>
 ) => {
   const responseContent = {
     success: false,
@@ -26,12 +26,10 @@ const formatResponse = (
 };
 
 const handleError = (error: unknown, responseType: ResponseType = "server") => {
+  // 1️⃣ RequestError
   if (error instanceof RequestError) {
-    logger.error(
-      { err: error },
-      `${responseType.toUpperCase()} Error: ${error.message}`
-    );
-
+    const logMsg = `${responseType.toUpperCase()} Error: ${error.message}`;
+    logger.error({ message: logMsg, err: error });
     return formatResponse(
       responseType,
       error.statusCode,
@@ -40,16 +38,13 @@ const handleError = (error: unknown, responseType: ResponseType = "server") => {
     );
   }
 
+  // 2️⃣ Zod validation
   if (error instanceof ZodError) {
     const validationError = new ValidationError(
       error.flatten().fieldErrors as Record<string, string[]>
     );
-
-    logger.error(
-      { err: error },
-      `Validation Error: ${validationError.message}`
-    );
-
+    const logMsg = `Validation Error: ${validationError.message}`;
+    logger.error({ message: logMsg, err: error });
     return formatResponse(
       responseType,
       validationError.statusCode,
@@ -58,14 +53,16 @@ const handleError = (error: unknown, responseType: ResponseType = "server") => {
     );
   }
 
+  // 3️⃣ Generic JS Error
   if (error instanceof Error) {
-    logger.error(error.message);
-
+    logger.error({ message: error.message, err: error });
     return formatResponse(responseType, 500, error.message);
   }
 
-  logger.error({ err: error }, "An unexpected error occurred");
-  return formatResponse(responseType, 500, "An unexpected error occurred");
+  // 4️⃣ Anything else
+  const fallbackMsg = "An unexpected error occurred";
+  logger.error({ message: fallbackMsg, err: error });
+  return formatResponse(responseType, 500, fallbackMsg);
 };
 
 export default handleError;

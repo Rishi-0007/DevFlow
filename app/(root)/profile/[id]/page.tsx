@@ -45,8 +45,17 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
 
   const { user } = data!;
 
-  const { data: userStats } = await getUserStats({ userId: id });
+  const {
+    success: userStatsSuccess,
+    data: userStats,
+    error: userStatsError,
+  } = await getUserStats({ userId: id });
 
+  const defaultStats = {
+    totalQuestions: 0,
+    totalAnswers: 0,
+    badges: { GOLD: 0, SILVER: 0, BRONZE: 0 },
+  };
   const {
     success: userQuestionsSuccess,
     data: userQuestions,
@@ -137,9 +146,11 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
       </section>
 
       <Stats
-        totalQuestions={userStats?.totalQuestions || 0}
-        totalAnswers={userStats?.totalAnswers || 0}
-        badges={userStats?.badges || { GOLD: 0, SILVER: 0, BRONZE: 0 }}
+        totalQuestions={
+          userStats?.totalQuestions || defaultStats.totalQuestions
+        }
+        totalAnswers={userStats?.totalAnswers || defaultStats.totalAnswers}
+        badges={userStats?.badges || defaultStats.badges}
         reputationPoints={user.reputation || 0}
       />
 
