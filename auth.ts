@@ -22,27 +22,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Credentials({
       async authorize(credentials) {
         const validatedFields = SignInSchema.safeParse(credentials);
-
         if (validatedFields.success) {
           const { email, password } = validatedFields.data;
-
           const { data: existingAccount } = (await api.accounts.getByProvider(
             email
           )) as ActionResponse<IAccountDoc>;
-
           if (!existingAccount) return null;
-
           const { data: existingUser } = (await api.users.getById(
             existingAccount.userId.toString()
           )) as ActionResponse<IUserDoc>;
-
           if (!existingUser) return null;
-
           const isValidPassword = await bcrypt.compare(
             password,
             existingAccount.password!
           );
-
           if (isValidPassword) {
             return {
               id: existingUser.id,
@@ -69,19 +62,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               ? token.email!
               : account.providerAccountId
           )) as ActionResponse<IAccountDoc>;
-
         if (!success || !existingAccount) return token;
-
         const userId = existingAccount.userId;
-
         if (userId) token.sub = userId.toString();
       }
-
       return token;
     },
     async signIn({ user, profile, account }) {
       if (account?.type === "credentials") return true;
       if (!account || !user) return false;
+
+      // Add explicit base URL for API calls in production
+      // const baseUrl =
+      //   process.env.NEXTAUTH_URL || "https://dev-flow-flame.vercel.app";
 
       const userInfo = {
         name: user.name!,
@@ -90,7 +83,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         username:
           account.provider === "github"
             ? (profile?.login as string)
-            : (user.name?.toLowerCase() as string),
+            : (user.name?.toLowerCase().replace(/\s+/g, "") as string),
       };
 
       const { success } = (await api.auth.oAuthSignIn({
@@ -100,10 +93,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       })) as ActionResponse;
 
       if (!success) return false;
-
       return true;
     },
   },
   trustHost: true,
   secret: process.env.AUTH_SECRET,
+  basePath: "/api/auth",
+  debug: process.env.NODE_ENV === "development",
 });

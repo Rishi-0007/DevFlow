@@ -13,24 +13,38 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.unsplash.com",
-        port: "",
       },
       {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
-        port: "",
       },
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
-        port: "",
       },
       {
         protocol: "https",
         hostname: "*",
-        port: "",
       },
     ],
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/api/auth/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Credentials", value: "true" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET,POST,PUT,DELETE" },
+        ],
+      },
+    ];
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
   },
 };
 
