@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <br />
+  <img src="public/images/site-logo-image.png">
+  <br />
+  <p>A full-stack developer Q&A platform built with Next.js, MongoDB, OpenAI, and modern UI libraries.</p>
+</div>
 
-## Getting Started
+---
 
-First, run the development server:
+## 🧠 What is DevOverflow?
+
+**DevOverflow** is a full-stack, production-ready Q&A web application built for developers. Inspired by Stack Overflow, it allows users to post technical questions, give and vote on answers, use AI to assist with queries, explore tags, and manage their developer profile.
+
+---
+
+## 🚀 Live Demo
+
+> [🔗 Visit Live Site](https://dev-flow-flame.vercel.app)  
+> _(Hosted on Vercel, optimized for performance)_
+
+---
+
+## 🔧 Tech Stack
+
+- ⚙️ **Next.js 15 (App Router)**
+- 💬 **NextAuth.js** (GitHub, Google, Credentials login)
+- 🎨 **Tailwind CSS** + **ShadCN UI**
+- 💾 **MongoDB** + Mongoose
+- 🧠 **OpenAI API** (AI answers)
+- 📄 **Zod** + **React Hook Form** (Validation)
+- 🌐 **TypeScript**
+- ✨ **Responsive design** with full accessibility
+
+---
+
+## 🧩 Features
+
+- 🔐 **Authentication** (Email/Password, GitHub, Google)
+- 💬 **Ask & answer** programming questions
+- 🔎 **Global search** across questions, tags, and users
+- 🤖 **AI-powered answers** via OpenAI API
+- 👍 **Upvote/downvote** questions & answers
+- 📌 **Save questions** to personal collections
+- 🏷️ **Tag-based filtering** & tag detail pages
+- 📊 **User profile with stats, badges & contributions**
+- 🧑‍🤝‍🧑 **Community tab** to discover other users
+- 🛠️ **Rich text editor** (TinyMCE + MDX) for writing answers
+- 💼 **Jobs board** with filtering (by location, tags, etc.)
+- ✍️ **Ask/Edit/Delete** questions or answers with auth
+- 📱 **Fully responsive** (desktop, tablet, mobile)
+- ⚡ **Optimized with caching, revalidation, pagination**
+
+---
+
+## 📂 Folder Structure
+
+```
+
+/app              - Next.js App Router structure
+/components       - Reusable UI components
+/constants        - Static values (routes, empty states)
+/database         - Mongoose models
+/lib              - API utilities, auth config, db connection
+/public           - Static assets (icons, logos)
+
+```
+
+---
+
+## ⚙️ Local Setup
+
+**Clone and Install**
+
+```bash
+git clone https://github.com/Rishi-0007/DevFlow.git
+cd DevFlow
+npm install
+```
+
+**Configure Environment**
+
+Create a `.env` file in the root:
+
+```env
+MONGODB_URI=
+OPENAI_API_KEY=
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
+AUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+NEXT_PUBLIC_TINY_EDITOR_API_KEY=
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+```
+
+**Run Development Server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💼 Why this Project?
 
-## Learn More
+I built DevOverflow to:
 
-To learn more about Next.js, take a look at the following resources:
+- Practice **end-to-end app development** using the latest Next.js features
+- Demonstrate **production-grade code** with authentication, error handling, and clean architecture
+- Show capability in **full-stack development** using React, MongoDB, and OpenAI
+- Highlight skills in **API design, validation, server actions**, and **dynamic routing**
+- Create something **real and usable** — not just a portfolio piece
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you're hiring for a frontend, full-stack, or junior backend role — this project reflects the exact responsibilities those roles entail.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📬 Contact Me
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- GitHub: [@Rishi-0007](https://github.com/Rishi-0007)
+- LinkedIn: [Rishi Nayak](https://www.linkedin.com/in/rishi-nayak-51b1a821a/)
+- Email: [rishikumarnayak9@gmail.com](mailto:rishikumarnayak9@gmail.com)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+_This is a personal project created for learning, showcasing skills, and exploring full-stack best practices._
