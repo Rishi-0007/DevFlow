@@ -30,27 +30,33 @@ const dbConnect = async (): Promise<Mongoose> => {
   }
 
   if (!cached.promise) {
+    // 🔧 Set global options before connecting
+    mongoose.set("bufferCommands", false);
+    mongoose.set("bufferTimeoutMS", 30000); // 30 seconds (or 0 to disable)
+
     const options = {
       dbName: "devflow",
-      serverSelectionTimeoutMS: 30000, // 30 seconds
-      socketTimeoutMS: 45000, // 45 seconds
-      maxPoolSize: 50, // Maximum number of connections in the pool
-      minPoolSize: 5, // Minimum number of connections in the pool
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      maxPoolSize: 50,
+      minPoolSize: 5,
       retryWrites: true,
       retryReads: true,
-      connectTimeoutMS: 30000, // 30 seconds
+      connectTimeoutMS: 30000,
     };
 
     logger.info("Creating new mongoose connection");
+
     cached.promise = mongoose
       .connect(MONGODB_URI, options)
       .then((mongoose) => {
-        logger.info("Successfully connected to MongoDB");
+        logger.info("✅ Successfully connected to MongoDB");
         return mongoose;
       })
       .catch((error) => {
-        logger.error("Failed to connect to MongoDB", error);
-        // Reset the promise to allow retries
+        logger.error("❌ Failed to connect to MongoDB", {
+          message: error.message,
+        });
         cached.promise = null;
         throw error;
       });
@@ -59,23 +65,20 @@ const dbConnect = async (): Promise<Mongoose> => {
   try {
     cached.conn = await cached.promise;
   } catch (error) {
-    // If connection fails, clear the cache to allow retry
     cached.promise = null;
     throw error;
   }
 
-  // Setup event listeners for the connection
   mongoose.connection.on("connected", () => {
     logger.info("Mongoose connected to DB");
   });
 
   mongoose.connection.on("error", (err) => {
-    logger.error("Mongoose connection error:", err);
+    logger.error("Mongoose connection error", { message: err.message });
   });
 
   mongoose.connection.on("disconnected", () => {
     logger.warn("Mongoose disconnected from DB");
-    // Reset connection cache to force reconnection
     cached.conn = null;
     cached.promise = null;
   });
