@@ -1,198 +1,268 @@
-export const techMap: { [key: string]: string } = {
-  // JavaScript variations
-  javascript: "devicon-javascript-plain",
-  js: "devicon-javascript-plain",
+import { IconType } from "react-icons";
+import {
+  DiJavascript1,
+  DiReact,
+  DiNodejsSmall,
+  DiPython,
+  DiJava,
+  DiPhp,
+  DiHtml5,
+  DiCss3,
+  DiGit,
+  DiDocker,
+  DiMongodb,
+  DiMysql,
+  DiPostgresql,
+  DiAws,
+  DiHeroku,
+  DiRedis,
+  DiLinux,
+  DiJenkins,
+  DiNginx,
+  DiSwift,
+  DiGo,
+  DiRust,
+  DiDart,
+  DiDjango,
+  DiBootstrap,
+  DiPhotoshop,
+  DiIllustrator,
+} from "react-icons/di";
+import { VscAzure } from "react-icons/vsc";
+import {
+  SiTypescript,
+  SiNextdotjs,
+  SiBun,
+  SiDeno,
+  SiCplusplus,
+  SiSharp,
+  SiTailwindcss,
+  SiVuedotjs,
+  SiAngular,
+  SiJquery,
+  SiSass,
+  SiLaravel,
+  SiRubyonrails,
+  SiKubernetes,
+  // SiMicrosoftazure was invalid
+  SiGooglecloud,
+  SiBitbucket,
+  SiBlender,
+  SiUnity,
+  SiUnrealengine,
+  SiKotlin,
+  SiFlask,
+  SiMui,
+  SiAdobeillustrator,
+  SiAdobephotoshop,
+  SiAdobexd,
+  SiAdobepremierepro,
+  SiFigma,
+  SiInkscape,
+  SiTrello,
+  SiJira,
+  SiElasticsearch,
+  SiRedux,
+  SiThreedotjs,
+  SiFirebase,
+  SiGraphql,
+} from "react-icons/si";
 
-  // TypeScript variations
-  typescript: "devicon-typescript-plain",
-  ts: "devicon-typescript-plain",
+export const techMap: { [key: string]: IconType } = {
+  // JavaScript
+  javascript: DiJavascript1,
+  js: DiJavascript1,
 
-  // React variations
-  react: "devicon-react-original",
-  reactjs: "devicon-react-original",
+  // TypeScript
+  typescript: SiTypescript,
+  ts: SiTypescript,
 
-  // Next.js variations
-  nextjs: "devicon-nextjs-plain",
-  next: "devicon-nextjs-plain",
+  // React
+  react: DiReact,
+  reactjs: DiReact,
 
-  // Node.js variations
-  nodejs: "devicon-nodejs-plain",
-  node: "devicon-nodejs-plain",
+  // Next.js
+  nextjs: SiNextdotjs,
+  next: SiNextdotjs,
 
-  // Bun.js variations
-  bun: "devicon-bun-plain",
-  bunjs: "devicon-bun-plain",
+  // Node.js
+  nodejs: DiNodejsSmall,
+  node: DiNodejsSmall,
 
-  // Deno.js variations
-  deno: "devicon-denojs-original",
-  denojs: "devicon-denojs-plain",
+  // Bun
+  bun: SiBun,
+  bunjs: SiBun,
+
+  // Deno
+  deno: SiDeno,
+  denojs: SiDeno,
 
   // Python
-  python: "devicon-python-plain",
+  python: DiPython,
 
   // Java
-  java: "devicon-java-plain",
+  java: DiJava,
 
   // C++
-  "c++": "devicon-cplusplus-plain",
-  cpp: "devicon-cplusplus-plain",
+  "c++": SiCplusplus,
+  cpp: SiCplusplus,
 
   // C#
-  "c#": "devicon-csharp-plain",
-  csharp: "devicon-csharp-plain",
+  "c#": SiSharp,
+  csharp: SiSharp,
 
   // PHP
-  php: "devicon-php-plain",
+  php: DiPhp,
 
   // HTML
-  html: "devicon-html5-plain",
-  html5: "devicon-html5-plain",
+  html: DiHtml5,
+  html5: DiHtml5,
 
   // CSS
-  css: "devicon-css3-plain",
-  css3: "devicon-css3-plain",
+  css: DiCss3,
+  css3: DiCss3,
 
   // Git
-  git: "devicon-git-plain",
+  git: DiGit,
 
   // Docker
-  docker: "devicon-docker-plain",
+  docker: DiDocker,
 
   // MongoDB
-  mongodb: "devicon-mongodb-plain",
-  mongo: "devicon-mongodb-plain",
+  mongodb: DiMongodb,
+  mongo: DiMongodb,
 
   // MySQL
-  mysql: "devicon-mysql-plain",
+  mysql: DiMysql,
 
   // PostgreSQL
-  postgresql: "devicon-postgresql-plain",
-  postgres: "devicon-postgresql-plain",
+  postgresql: DiPostgresql,
+  postgres: DiPostgresql,
 
-  // AWS variations
-  aws: "devicon-amazonwebservices-original",
-  "amazon web services": "devicon-amazonwebservices-original",
+  // AWS
+  aws: DiAws,
+  "amazon web services": DiAws,
 
   // Firebase
-  firebase: "devicon-firebase-plain",
+  firebase: SiFirebase,
 
   // GraphQL
-  graphql: "devicon-graphql-plain",
+  graphql: SiGraphql,
 
-  // Vue.js
-  vue: "devicon-vuejs-plain",
-  vuejs: "devicon-vuejs-plain",
+  // Vue
+  vue: SiVuedotjs,
+  vuejs: SiVuedotjs,
 
-  // Tailwind CSS
-  tailwind: "devicon-tailwindcss-plain",
-  tailwindcss: "devicon-tailwindcss-plain",
+  // Tailwind
+  tailwind: SiTailwindcss,
+  tailwindcss: SiTailwindcss,
 
   // Angular
-  angular: "devicon-angularjs-plain",
+  angular: SiAngular,
 
   // jQuery
-  jquery: "devicon-jquery-plain",
+  jquery: SiJquery,
 
   // SASS
-  sass: "devicon-sass-plain",
+  sass: SiSass,
 
   // Laravel
-  laravel: "devicon-laravel-plain",
+  laravel: SiLaravel,
 
-  // Ruby on Rails
-  rails: "devicon-rails-plain",
-  ruby: "devicon-rails-plain",
+  // Rails
+  rails: SiRubyonrails,
+  ruby: SiRubyonrails,
 
   // Redis
-  redis: "devicon-redis-plain",
+  redis: DiRedis,
 
   // Linux
-  linux: "devicon-linux-plain",
+  linux: DiLinux,
 
   // Jenkins
-  jenkins: "devicon-jenkins-plain",
+  jenkins: DiJenkins,
 
   // Kubernetes
-  kubernetes: "devicon-kubernetes-plain",
+  kubernetes: SiKubernetes,
 
   // Azure
-  azure: "devicon-azure-plain",
-  "azure devops": "devicon-azure-plain",
+  azure: VscAzure,
+  "azure devops": VscAzure,
 
-  // Google Cloud Platform
-  gcp: "devicon-googlecloud-plain",
-  "google cloud": "devicon-googlecloud-plain",
+  // GCP
+  gcp: SiGooglecloud,
+  "google cloud": SiGooglecloud,
 
   // Bitbucket
-  bitbucket: "devicon-bitbucket-plain",
+  bitbucket: SiBitbucket,
 
   // NGINX
-  nginx: "devicon-nginx-plain",
+  nginx: DiNginx,
 
   // Blender
-  blender: "devicon-blender-plain",
+  blender: SiBlender,
 
   // Unity
-  unity: "devicon-unity-original",
+  unity: SiUnity,
 
-  // Unreal Engine
-  unreal: "devicon-unrealengine-original",
+  // Unreal
+  unreal: SiUnrealengine,
 
   // Swift
-  swift: "devicon-swift-plain",
+  swift: DiSwift,
 
   // Kotlin
-  kotlin: "devicon-kotlin-plain",
+  kotlin: SiKotlin,
 
   // Go
-  go: "devicon-go-plain",
+  go: DiGo,
 
   // Rust
-  rust: "devicon-rust-plain",
+  rust: DiRust,
 
   // Dart
-  dart: "devicon-dart-plain",
+  dart: DiDart,
 
   // Flask
-  flask: "devicon-flask-original",
+  flask: SiFlask,
 
   // Django
-  django: "devicon-django-plain",
+  django: DiDjango,
 
   // Bootstrap
-  bootstrap: "devicon-bootstrap-plain",
+  bootstrap: DiBootstrap,
 
-  // Material-UI
-  materialui: "devicon-materialui-plain",
-  "material ui": "devicon-materialui-plain",
+  // MUI
+  materialui: SiMui,
+  "material ui": SiMui,
 
-  // Adobe tools
-  photoshop: "devicon-photoshop-plain",
-  illustrator: "devicon-illustrator-plain",
-  xd: "devicon-xd-plain",
-  premiere: "devicon-premiere-plain",
+  // Adobe
+  photoshop: SiAdobephotoshop,
+  illustrator: SiAdobeillustrator,
+  xd: SiAdobexd,
+  premiere: SiAdobepremierepro,
 
   // Figma
-  figma: "devicon-figma-plain",
+  figma: SiFigma,
 
   // Inkscape
-  inkscape: "devicon-inkscape-plain",
+  inkscape: SiInkscape,
 
   // Trello
-  trello: "devicon-trello-plain",
+  trello: SiTrello,
 
   // Jira
-  jira: "devicon-jira-plain",
+  jira: SiJira,
 
   // Heroku
-  heroku: "devicon-heroku-plain",
+  heroku: DiHeroku,
 
   // Elasticsearch
-  elasticsearch: "devicon-elasticsearch-plain",
+  elasticsearch: SiElasticsearch,
 
   // Redux
-  redux: "devicon-redux-original",
+  redux: SiRedux,
 
   // Three.js
-  threejs: "devicon-threejs-original",
+  threejs: SiThreedotjs,
 };
