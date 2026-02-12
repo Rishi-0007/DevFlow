@@ -52,6 +52,54 @@
 
 ---
 
+### 🧱 The Architecture:
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         NEXT.JS 15 APP ROUTER                        │
+│                                                                      │
+│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────────────┐  │
+│  │  (auth)      │  │  (root)      │  │   API Routes              │  │
+│  │  Route Group │  │  Route Group │  │   /api/auth/[...nextauth] │  │
+│  │  Login/      │  │  Home, Tags, │  │   /api/ai/answers         │  │
+│  │  Register    │  │  Community,  │  │   /api/users, /accounts   │  │
+│  │              │  │  Profile,    │  │                           │  │
+│  │              │  │  Collections,│  │                           │  │
+│  │              │  │  Ask,Jobs    │  │                           │  │
+│  └──────────────┘  └──────────────┘  └───────────────────────────┘  │
+│                                                                      │
+│  ┌──────────────────────────────────────────────────────────────────┐│
+│  │                    SERVER ACTIONS LAYER                          ││
+│  │  question.action │ answer.action │ vote.action │ collection     ││
+│  │  user.action     │ tag.action    │ auth.action │ interaction    ││
+│  │  general.action (global search)  │ job.action                   ││
+│  └──────────────────────────────────────────────────────────────────┘│
+│                                                                      │
+│  ┌──────────────────────────────────────────────────────────────────┐│
+│  │                     HANDLER LAYER                               ││
+│  │  action.ts (validation + auth + dbConnect wrapper)              ││
+│  │  error.ts (4-tier error handler: RequestError→Zod→Error→catch) ││
+│  │  fetch.ts (AbortController timeout, typed fetch wrapper)        ││
+│  └──────────────────────────────────────────────────────────────────┘│
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+            ┌────────────┴────────────┐
+            │                         │
+            ▼                         ▼
+┌───────────────────────┐  ┌────────────────────────┐
+│       MONGODB         │  │     EXTERNAL APIS      │
+│    (Mongoose ODM)     │  │                        │
+│                       │  │  • Gemini 2.5 Flash    │
+│  Users, Accounts      │  │    (AI answers)        │
+│  Questions, Answers   │  │  • GitHub OAuth        │
+│  Tags, TagQuestions   │  │  • Google OAuth        │
+│  Votes, Collections   │  │  • JSearch API (jobs)  │
+│  Interactions         │  │                        │
+└───────────────────────┘  └────────────────────────┘
+```
+
+---
+
 ## 📂 Folder Structure
 
 ```
